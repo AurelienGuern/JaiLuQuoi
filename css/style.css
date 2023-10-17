@@ -1,30 +1,72 @@
-* {
-  font-family: 'Kaushan Script', cursive;
-  font-family: 'Mali', cursive;
+body {
+  background-image: linear-gradient(to right, #ffecd2 0%, #fcb69f 100%);
 }
 
-header {
-background-color: #c56e33;
-color: white;
-height: 5em;
-text-align: center;
-padding: 1em 0 3.2em;
-border-radius: 0 0 35% 35%;
-position: relative;
+header,
+body {
+    font-family: 'Kaushan Script', cursive;
+    
+}
 
+
+
+@keyframes float {
+  0% {
+    box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
+    transform: translatey(0px);
+  }
+  50% {
+    box-shadow: 0 25px 15px 0px rgba(0,0,0,0.2);
+    transform: translatey(-20px);
+  }
+  100% {
+    box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
+    transform: translatey(0px);
+  }
+}
+.avatar {
+  height: 13em;
+  box-sizing: border-box;
+  overflow: hidden;
+  transform: translatey(0px);
+  animation: float 6s ease-in-out infinite;
+  img { width: 100%; height: auto; }
+}
+
+
+
+
+
+
+
+
+
+header {
+  color: black;
+  height: 5em;
+  text-align: center;
+  padding: 1em 0 3.2em;
+  border-radius: 0 0 35% 35%;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 header p {
-margin: 1em;
-font-size: 1.5em;
-font-weight: 700;
-overflow: hidden;
+  margin: 1em;
+  font-size: 1.5em;
+  font-weight: 700;
+  
 }
 header img {
-position: absolute;
-left: 20px;
-height: 8em;
-width: auto;
-top: 3px;
-z-index: 999;
+  filter: invert(100%);
 }
+
+
+
+
+
+
