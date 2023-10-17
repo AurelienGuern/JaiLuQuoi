@@ -1,9 +1,30 @@
 * {
-    font-family: 'Kaushan Script', cursive;
-    font-family: 'Mali', cursive;
+  font-family: 'Kaushan Script', cursive;
+  font-family: 'Mali', cursive;
 }
 
 header {
-  background-color: #c56e33;
-  color: white;
+background-color: #c56e33;
+color: white;
+height: 5em;
+text-align: center;
+padding: 1em 0 3.2em;
+border-radius: 0 0 35% 35%;
+position: relative;
+
+}
+
+header p {
+margin: 1em;
+font-size: 1.5em;
+font-weight: 700;
+overflow: hidden;
+}
+header img {
+position: absolute;
+left: 20px;
+height: 8em;
+width: auto;
+top: 3px;
+z-index: 999;
 }
