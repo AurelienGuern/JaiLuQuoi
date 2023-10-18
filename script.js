@@ -1,28 +1,23 @@
 console.log("script OK");
 
 /*=============== SWIPER JS ===============*/
-let swiperCards = new Swiper(".card__content", {
-    loop: true,
-    spaceBetween: 32,
-    grabCursor: true,
+ 
+$(document).ready(function(){
+  $(".b").click(function(){
+      $(this).toggleClass("b");
+      $(this).toggleClass("b-selected");
+   });
+  });
   
-    pagination: {
-      el: ".swiper-pagination",
-      clickable: true,
-      dynamicBullets: true,
-    },
-  
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
-    },
-  
-    breakpoints:{
-      600: {
-        slidesPerView: 2,
-      },
-      968: {
-        slidesPerView: 3,
-      },
-    },
+  var elem = document.querySelector('.carousel');
+  var flkty = new Flickity( elem, {
+    // options
+    cellalign: 'right',
+    pageDots: false,
+    groupCells: '20%',
+    selectedAttraction: 0.03,
+    friction: 0.15
+  });
+  var flkty = new Flickity( '.carousel', {
+    // options
   });
