@@ -1,35 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ma bibli : qu'est-ce que j'ai lu déjà ?</title>
-    <link rel="stylesheet" href="/Ma bibli/css/reset.css">
-    <link rel="stylesheet" href="/Ma bibli/css/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Mali:ital,wght@0,200;0,300;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600&display=swap" rel="stylesheet">
-  <link rel="icon" href="/Ma bibli/img/" />
+    <link rel="stylesheet" href="/MaBibli.github.io/css/reset.css" />
+    <link rel="stylesheet" href="/MaBibli.github.io/css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Mali:ital,wght@0,200;0,300;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="/MaBibli.github.io/img/svg/minlogo.svg" />
+  </head>
 
-</head>
+  <header>
+    <img
+      class="avatar"
+      src="/MaBibli.github.io/img/png/logo-no-background.png"
+      alt="logo ma bibli"
+    />
+    <img />
+    <entete class="entete">
+      <p>J'ai lu quoi moi déjà ?</p>
+      <p>
+        Votre bibliothèque personnelle, avec vos livres lus, des notes, et votre
+        liste d'envie.
+      </p>
+    </entete>
+  </header>
 
-<header>
-<p> J'ai lu quoi moi déjà ?</p>
-<p>Votre bibliothèque personnelle, avec vos livres lus, des notes, et votre liste d'envie.</p>
-
-</header>
-<body>
-    <!-- J'imagine des cards avec "mes derniers livres lus"
-        Qui affiche la note qu'on lui a mis /10
-        Date de lecture (mois année)
-        Où on peut cliquer dessus et ça mettra des notes perso dessus
-
-
-        3 cards pour la ligne des livres lus
-        puis "voir le reste de ma bibliothèque"
-
-        et "liste d'envie avec juste card qui met l'image du livre et son nom"
-    -->
-    
-</body>
+  <body>
+   <main>
+      
+       <div class="carousel">
+         <div class="carousel-cell">
+           <img src="/img/books/martineden.jpg" class="p" />
+           <p class="n">Martin Eden - Jack London</p>
+           <p class="b">Y aller</p>
+           <p class="content"></p>
+         </div>
+         <div class="carousel-cell">
+           <img src="/img/books/kilometrezero.jpg" class="p" />
+           <p class="n">Kilomètre zéro - Maud Ankaoua</p>
+           <p class="b">Y aller</p>>
+         </div>
+         <div class="carousel-cell">
+           <img src="/img/books/johnfante.jpg" class="p" />
+           <p class="n">J'ai demandé à la poussière - John Fante</p>
+           <p class="b">Y aller</p>
+         </div>
+         <div class="carousel-cell">
+           <img src="/img/books/mouradwinter.jpg" class="p" />
+           <p class="n">L'amour c'est surcoté - Mourad Winter</p>
+           <p class="b">Y aller</p>
+         </div>
+         <div class="carousel-cell">
+           <img src="/img/books/neruda.jpg" class="p" />
+           <p class="n">J'avoue que j'ai vécu - Pablo Neruda</p>
+           <p class="b">Y aller</p>
+         </div>
+         <div class="carousel-cell">
+           <img src="/img/books/romaingary.jpg" class="p" />
+           <p class="n">La promesse de l'aube - Romain Gary</p>
+           <p class="b">Y aller</p>
+         </div>
+         <div class="carousel-cell">
+           <img src="/img/books/rsiblesamours.jpg" class="p" />
+           <p class="n">RIsibles amours - Milan Kundera</p>
+           <p class="b">Y aller</p>
+         </div>
+       </div>
+   </main>
+    <script src="/script.js"></script>
+  </body>
 </html>
