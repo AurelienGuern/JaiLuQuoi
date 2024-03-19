@@ -16,7 +16,7 @@ class Library
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $rating = null;
 
     #[ORM\Column(nullable: true)]
@@ -24,9 +24,6 @@ class Library
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $opinion = null;
-
-    #[ORM\OneToOne(inversedBy: 'library', cascade: ['persist', 'remove'])]
-    private ?Reader $reader = null;
 
     #[ORM\ManyToMany(targetEntity: Book::class, inversedBy: 'libraries')]
     private Collection $book;
@@ -46,7 +43,7 @@ class Library
         return $this->rating;
     }
 
-    public function setRating(int $rating): static
+    public function setRating(?int $rating): static
     {
         $this->rating = $rating;
 
@@ -73,18 +70,6 @@ class Library
     public function setOpinion(?string $opinion): static
     {
         $this->opinion = $opinion;
-
-        return $this;
-    }
-
-    public function getReader(): ?Reader
-    {
-        return $this->reader;
-    }
-
-    public function setReader(?Reader $reader): static
-    {
-        $this->reader = $reader;
 
         return $this;
     }

@@ -19,14 +19,14 @@ class Book
     private ?string $name = null;
 
     #[ORM\Column(nullable: true)]
-    private ?\DateTimeImmutable $release_date = null;
-
-    #[ORM\ManyToMany(targetEntity: Library::class, mappedBy: 'book')]
-    private Collection $libraries;
+    private ?\DateTimeImmutable $release_year = null;
 
     #[ORM\ManyToOne(inversedBy: 'books')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Author $author = null;
+
+    #[ORM\ManyToMany(targetEntity: Library::class, mappedBy: 'book')]
+    private Collection $libraries;
 
     public function __construct()
     {
@@ -50,14 +50,26 @@ class Book
         return $this;
     }
 
-    public function getReleaseDate(): ?\DateTimeImmutable
+    public function getReleaseYear(): ?\DateTimeImmutable
     {
-        return $this->release_date;
+        return $this->release_year;
     }
 
-    public function setReleaseDate(?\DateTimeImmutable $release_date): static
+    public function setReleaseYear(?\DateTimeImmutable $release_year): static
     {
-        $this->release_date = $release_date;
+        $this->release_year = $release_year;
+
+        return $this;
+    }
+
+    public function getAuthor(): ?Author
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(?Author $author): static
+    {
+        $this->author = $author;
 
         return $this;
     }
@@ -85,18 +97,6 @@ class Book
         if ($this->libraries->removeElement($library)) {
             $library->removeBook($this);
         }
-
-        return $this;
-    }
-
-    public function getAuthor(): ?Author
-    {
-        return $this->author;
-    }
-
-    public function setAuthor(?Author $author): static
-    {
-        $this->author = $author;
 
         return $this;
     }

@@ -19,7 +19,7 @@ class Author
     private ?string $firstname = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $name = null;
+    private ?string $lastname = null;
 
     #[ORM\OneToMany(targetEntity: Book::class, mappedBy: 'author')]
     private Collection $books;
@@ -46,14 +46,14 @@ class Author
         return $this;
     }
 
-    public function getName(): ?string
+    public function getLastname(): ?string
     {
-        return $this->name;
+        return $this->lastname;
     }
 
-    public function setName(string $name): static
+    public function setLastname(string $lastname): static
     {
-        $this->name = $name;
+        $this->lastname = $lastname;
 
         return $this;
     }
