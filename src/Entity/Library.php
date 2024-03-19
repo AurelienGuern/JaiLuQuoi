@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\LibraryRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -22,6 +24,17 @@ class Library
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $opinion = null;
+
+    #[ORM\OneToOne(inversedBy: 'library', cascade: ['persist', 'remove'])]
+    private ?Reader $reader = null;
+
+    #[ORM\ManyToMany(targetEntity: Book::class, inversedBy: 'libraries')]
+    private Collection $book;
+
+    public function __construct()
+    {
+        $this->book = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -60,6 +73,42 @@ class Library
     public function setOpinion(?string $opinion): static
     {
         $this->opinion = $opinion;
+
+        return $this;
+    }
+
+    public function getReader(): ?Reader
+    {
+        return $this->reader;
+    }
+
+    public function setReader(?Reader $reader): static
+    {
+        $this->reader = $reader;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Book>
+     */
+    public function getBook(): Collection
+    {
+        return $this->book;
+    }
+
+    public function addBook(Book $book): static
+    {
+        if (!$this->book->contains($book)) {
+            $this->book->add($book);
+        }
+
+        return $this;
+    }
+
+    public function removeBook(Book $book): static
+    {
+        $this->book->removeElement($book);
 
         return $this;
     }

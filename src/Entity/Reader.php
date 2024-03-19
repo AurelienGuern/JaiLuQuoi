@@ -22,6 +22,9 @@ class Reader
     #[ORM\Column(length: 255)]
     private ?string $email = null;
 
+    #[ORM\OneToOne(mappedBy: 'reader', cascade: ['persist', 'remove'])]
+    private ?Library $library = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -59,6 +62,28 @@ class Reader
     public function setEmail(string $email): static
     {
         $this->email = $email;
+
+        return $this;
+    }
+
+    public function getLibrary(): ?Library
+    {
+        return $this->library;
+    }
+
+    public function setLibrary(?Library $library): static
+    {
+        // unset the owning side of the relation if necessary
+        if ($library === null && $this->library !== null) {
+            $this->library->setReader(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($library !== null && $library->getReader() !== $this) {
+            $library->setReader($this);
+        }
+
+        $this->library = $library;
 
         return $this;
     }
