@@ -7,7 +7,7 @@
 
 body {
   background-image: linear-gradient(to right, #ffecd2 0%, #fcb69f 100%);
-  font-family: 'Kaushan Script', cursive;
+  font-family: 'Inter', sans-serif;
   font-style: normal;
 }
 
@@ -127,4 +127,15 @@ header p {
   border-radius: 20px;
   text-align: center;
   position: relative;
+}
+
+
+.mr-auto  a:hover {
+color: black;
+font-weight: 800;
+}
+
+
+#navbarNav {
+  justify-content: space-between;
 }
