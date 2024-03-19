@@ -1,0 +1,1 @@
+Site de bibliothèque personnelle, où l'on peut recenser les livres lus, avec une note, un commentaire, une citation, une date de lecture, pour ne plus oublier ce qu'on a lu !
