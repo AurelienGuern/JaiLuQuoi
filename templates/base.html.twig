@@ -24,23 +24,23 @@
 		{% endblock %}
 
 		{% block javascripts %}
-		<!-- jQuery -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+			<!-- jQuery -->
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-<!-- Bootstrap JS -->
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+			<!-- Bootstrap JS -->
+			<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-{% endblock %}
+		{% endblock %}
 		<title>
 			J'ai Lu Quoi ?</title>
 	</head>
 	{% if app.flashes('success') is not empty %}
-    <div class="alert alert-success">
-        {% for message in app.flashes('success') %}
-            {{ message }}
-        {% endfor %}
-    </div>
-{% endif %}
+		<div class="alert alert-success">
+			{% for message in app.flashes('success') %}
+				{{ message }}
+			{% endfor %}
+		</div>
+	{% endif %}
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<div class="container">
 			<a class="navbar-brand" href="{{path('front_main_home')}}" style="font-size: 24px; font-weight: bold;">J'ai lu quoi ?</a>
@@ -55,20 +55,21 @@
 					<li class="nav-item">
 						<a class="nav-link" href="#" style="font-size: 18px;">Liste d'envies</a>
 					</li>
-						<li class="nav-item">
+					<li class="nav-item">
 						<a class="nav-link" href="#" style="font-size: 18px;">Un livre au hasard ?</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="#">Contact</a>
 					</li>
-					</ul>
+				</ul>
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item">
-					{# {% if user connecté %} #}
-						<a href="{{path('app_login')}}" class="btn btn-danger me-2">Déconnexion</a>
-						{# {% if user non connecté %} #}
-												{# <a href="{{path('app_login')}}" class="btn btn-danger me-2">Connexion</a> #}
-
+						{% if app.user %}
+							<a href="{{path('app_logout')}}" class="btn btn-danger me-2">Déconnexion</a>
+						{% else %}
+							<a href="{{path('app_login')}}" class="btn btn-danger me-2">Connexion</a>
+							{% endif %}
+						</li>
 					</li>
 					<li class="nav-item">
 						<form class="d-flex" action="">
