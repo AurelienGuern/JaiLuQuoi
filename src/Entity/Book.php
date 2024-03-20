@@ -28,6 +28,9 @@ class Book
     #[ORM\ManyToMany(targetEntity: Library::class, mappedBy: 'book')]
     private Collection $libraries;
 
+    #[ORM\Column(length: 2083, nullable: true)]
+    private ?string $cover = null;
+
     public function __construct()
     {
         $this->libraries = new ArrayCollection();
@@ -97,6 +100,18 @@ class Book
         if ($this->libraries->removeElement($library)) {
             $library->removeBook($this);
         }
+
+        return $this;
+    }
+
+    public function getCover(): ?string
+    {
+        return $this->cover;
+    }
+
+    public function setCover(?string $cover): static
+    {
+        $this->cover = $cover;
 
         return $this;
     }

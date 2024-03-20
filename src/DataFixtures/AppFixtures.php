@@ -35,9 +35,11 @@ class AppFixtures extends Fixture
                 ->setFirstname($faker->firstName())
                 ->setPassword($this->hasher->hashPassword($user, 'password'));
 
+            $users[] = $user;
             $manager->persist($user);
         }
         echo ('Utilisateurs créés');
+        echo ('\br');
 
 
         for ($i = 0; $i < 11; $i++) {
@@ -50,15 +52,20 @@ class AppFixtures extends Fixture
             $manager->persist($author);
         }
         echo ('Auteurs créés');
+        echo ('\br');
+
         for ($i = 0; $i < 31; $i++) {
             
             $book = new Book;
             $book->setName($faker->word())
                 ->setAuthor($authors[rand(1, 10)]);
 
+            $books[] = $book;
+
             $manager->persist($book);
         }
         echo ('Livrés créés');
+        echo ('\br');
 
         $manager->flush();
     }

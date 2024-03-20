@@ -78,4 +78,17 @@ class BookController extends AbstractController
 
         return $this->redirectToRoute('app_book_index', [], Response::HTTP_SEE_OTHER);
     }
+
+
+#[Route('/randombook', name: 'app_book_random', methods: ['GET'])]
+public function showRandom(BookRepository $bookRepository, Book $book): Response
+{
+$book = $bookRepository->findRandomBook();
+
+    dd($bookRepository->findall());
+    return $this->render('book/show.html.twig', [
+        'book' => $book
+    ]);
+}
+
 }
