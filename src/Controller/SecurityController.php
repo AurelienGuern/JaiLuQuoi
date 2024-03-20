@@ -20,18 +20,15 @@ class SecurityController extends AbstractController
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
 
-        // last username entered by the user
-        $lastUsername = $authenticationUtils->getLastUsername();
-
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            dd($user);
 
             // $user->setPassword($passwordHasher->hashPassword($user, $user->getPassword()));
             $entityManager->persist($user);
-            dd($user);
             try {
                 $entityManager->flush();
             } catch (\Throwable $th) {
@@ -47,7 +44,6 @@ class SecurityController extends AbstractController
         }
 
         return $this->render('security/login.html.twig', [
-            'last_username' => $lastUsername,
             'form' => $form,
             'error' => $error,
         ]);
