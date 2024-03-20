@@ -36,7 +36,7 @@
 	</head>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<div class="container">
-			<a class="navbar-brand" href="#" style="font-size: 24px; font-weight: bold;">J'ai lu quoi ?</a>
+			<a class="navbar-brand" href="{{path('front_main_home')}}" style="font-size: 24px; font-weight: bold;">J'ai lu quoi ?</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
@@ -57,7 +57,11 @@
 					</ul>
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item">
-						<a href="#" class="btn btn-danger me-2">Connexion</a>
+					{# {% if user connecté %} #}
+						<a href="{{path('app_login')}}" class="btn btn-danger me-2">Déconnexion</a>
+						{# {% if user non connecté %} #}
+												{# <a href="{{path('app_login')}}" class="btn btn-danger me-2">Connexion</a> #}
+
 					</li>
 					<li class="nav-item">
 						<form class="d-flex" action="">
