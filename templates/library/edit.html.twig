@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Library{% endblock %}
+
+{% block body %}
+    <h1>Edit Library</h1>
+
+    {{ include('library/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_library_index') }}">back to list</a>
+
+    {{ include('library/_delete_form.html.twig') }}
+{% endblock %}
