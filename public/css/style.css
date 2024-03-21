@@ -164,3 +164,7 @@ font-weight: 800;
   width: 60%; /* 60% de la largeur de la page */
   margin: 0 auto; /* Centre horizontalement */
 }
+
+.btnBook {
+  background-color: #fcb69f;
+}

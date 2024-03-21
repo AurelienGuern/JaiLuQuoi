@@ -2,9 +2,10 @@
 
 namespace App\Repository;
 
+use App\Entity\User;
 use App\Entity\Review;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @extends ServiceEntityRepository<Review>
@@ -45,4 +46,14 @@ class ReviewRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
+
+    public function getlastThreeReviews() {
+
+        return $this->createQueryBuilder('r')
+                   ->orderBy('r.readingDate', 'DESC')
+                   ->setMaxResults(3)
+                   ->getQuery()
+                   ->getResult()
+    ;
+}
 }

@@ -1,34 +1,31 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Review{% endblock %}
+{% block title %}{{ review.book.name }}{% endblock %}
 
 {% block body %}
-    <h1>Review</h1>
+    <div class="container my-5"> <!-- Ajout de marges en haut et en bas -->
+        <h1 class="mb-4">Ma review de {{ review.book.name }}</h1> <!-- Ajout de marge en bas -->
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ review.id }}</td>
-            </tr>
-            <tr>
-                <th>Note</th>
-                <td>{{ review.note }}</td>
-            </tr>
-            <tr>
-                <th>ReadingDate</th>
-                <td>{{ review.readingDate ? review.readingDate|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Opinion</th>
-                <td>{{ review.opinion }}</td>
-            </tr>
-        </tbody>
-    </table>
+        <div class="row align-items-center"> <!-- Alignement vertical au centre -->
+            <div class="col-md-8"> <!-- Colonne plus large sur les écrans moyens et plus grands -->
+                <div class="carousel" style="width: 100%;"> <!-- Ajustement de la largeur -->
+                    <div class="carousel-cell">
+                        <img src="{{ asset(review.book.cover) }}" class="book img-fluid" style="height: auto; width: 100%;" /> <!-- Hauteur automatique pour l'image, largeur de 100% -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4"> <!-- Colonne plus étroite sur les écrans moyens et plus grands -->
+                <p class="nameBook mb-4" style="font-size: 24px;">{{ review.book.name }}</p> <!-- Augmentation de la taille de la police et ajout de marge en bas -->
+                <p class="auteur mb-4" style="font-size: 20px;">{{ review.book.author.firstname ~ ' ' ~ review.book.author.lastname }}</p> <!-- Augmentation de la taille de la police et ajout de marge en bas -->
+                <p class="mb-4" style="font-size: 18px;">Note : {{ review.note }}</p> <!-- Augmentation de la taille de la police et ajout de marge en bas -->
+                <p class="mb-4" style="font-size: 18px;">Je l'ai lu en {{ review.readingDate ? review.readingDate|date('Y-m-d') : '' }}</p> <!-- Augmentation de la taille de la police et ajout de marge en bas -->
+                <p style="font-size: 18px;">{{ review.opinion }}</p> <!-- Augmentation de la taille de la police -->
+            </div>
+        </div>
 
-    <a href="{{ path('app_review_index') }}">back to list</a>
+        <a href="{{ path('app_review_index') }}" class="buttonBook">Retour</a> <!-- Ajout de marge en haut -->
+        <a href="{{ path('app_review_edit', {'id': review.id}) }}" class="buttonBook">Modifier ma review</a> <!-- Ajout de marge en haut -->
 
-    <a href="{{ path('app_review_edit', {'id': review.id}) }}">edit</a>
-
-    {{ include('review/_delete_form.html.twig') }}
+        {{ include('review/_delete_form.html.twig') }}
+    </div>
 {% endblock %}
