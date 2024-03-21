@@ -26,6 +26,23 @@
 
   <body>
     <main>
+
+
+
+      <div class="carousel reviews-container">
+        {% for review in reviews %}
+
+        <div class="carousel-cell review">
+          <img src="{{asset(review.book.cover)}}" class="book" />
+          <p class="nameBook">{{review.book.name}}</p>
+          <p class="auteur">{{ review.book.author.firstname ~ ' ' ~ review.book.author.lastname }}</p>
+            <p>Note : {{ review.note }}</p>
+            <p>Date de lecture : {{ review.readingDate ? review.readingDate|date('F Y') : 'Non spécifiée' }}</p>
+        </div>
+        {% endfor %}
+
+                <a class="buttonBook BtnCenter" href="{{ path('app_review_new') }}">Nouvelle lecture</a>
+
 {# 
 <div class="carousel">
         <div class="carousel-cell">

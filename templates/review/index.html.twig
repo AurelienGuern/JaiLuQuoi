@@ -1,39 +1,24 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Review index{% endblock %}
+{% block title %}Mes lectures{% endblock %}
 
 {% block body %}
-    <h1>Review index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Note</th>
-                <th>ReadingDate</th>
-                <th>Opinion</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
+
+    <h1>Mes lectures</h1>
+
+        <a class="buttonBook BtnCenter" href="{{ path('app_review_new') }}">Nouvelle lecture</a>
+
+      <div class="carousel reviews-container">
         {% for review in reviews %}
-            <tr>
-                <td>{{ review.id }}</td>
-                <td>{{ review.note }}</td>
-                <td>{{ review.readingDate ? review.readingDate|date('Y-m-d') : '' }}</td>
-                <td>{{ review.opinion }}</td>
-                <td>
-                    <a href="{{ path('app_review_show', {'id': review.id}) }}">show</a>
-                    <a href="{{ path('app_review_edit', {'id': review.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
 
-    <a href="{{ path('app_review_new') }}">Create new</a>
+        <div class="carousel-cell review">
+          <img src="{{asset(review.book.cover)}}" class="book" />
+          <p class="nameBook">{{review.book.name}}</p>
+          <p class="auteur">{{ review.book.author.firstname ~ ' ' ~ review.book.author.lastname }}</p>
+            <p>Note : {{ review.note }}</p>
+            <p>Date de lecture : {{ review.readingDate ? review.readingDate|date('F Y') : 'Non spécifiée' }}</p>
+        </div>
+        {% endfor %}
+
 {% endblock %}

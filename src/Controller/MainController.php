@@ -18,13 +18,12 @@ class MainController extends AbstractController
     public function index(): Response
     {
 
+        /** @var \App\Entity\User $user */
         $user = $this->getUser();
 
-        // dd($user);
-
-        // dd($user->getLibrary()->getBook());
-
-        return $this->render('main/index.html.twig', []);
+        return $this->render('main/index.html.twig', [
+            'reviews' => $user->getReviews(),
+        ]);
     }
 
     #[Route('/contact', name: 'contact')]

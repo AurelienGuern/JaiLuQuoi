@@ -60,7 +60,7 @@ class AppFixtures extends Fixture
             $book = new Book;
             $book->setName($faker->word())
                 ->setAuthor($authors[rand(1, 10)])
-                ->setCover('/img/books/kilometrezero.jpg');
+                ->setCover('img/books/kilometrezero.jpg');
 
             $books[] = $book;
 

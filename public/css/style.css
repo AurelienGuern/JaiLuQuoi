@@ -143,3 +143,24 @@ font-weight: 800;
 .rating_input {
   width : 40%;
 }
+
+
+.reviews-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.review {
+  display: inline-block;
+}
+
+.btnCenter {
+  display: block;
+  margin: auto;
+  width: fit-content;
+ 
+}
+.centered-form {
+  width: 60%; /* 60% de la largeur de la page */
+  margin: 0 auto; /* Centre horizontalement */
+}

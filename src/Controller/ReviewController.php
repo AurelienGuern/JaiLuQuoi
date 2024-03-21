@@ -17,8 +17,10 @@ class ReviewController extends AbstractController
     #[Route('/', name: 'app_review_index', methods: ['GET'])]
     public function index(ReviewRepository $reviewRepository): Response
     {
+$reviews = $reviewRepository->findAll();
+
         return $this->render('review/index.html.twig', [
-            'reviews' => $reviewRepository->findAll(),
+            'reviews' => $reviews,
         ]);
     }
 

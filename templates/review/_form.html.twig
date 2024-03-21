@@ -1,4 +1,27 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+<div class="d-flex justify-content-center"> <!-- Centre le formulaire horizontalement -->
+    {{ form_start(form, {'attr': {'class': 'w-50 p-3'}}) }}
+        <div class="my-4">
+            {{ form_row(form.note, {
+                'label' : 'Note',
+                'attr' : {
+                    'min' : 0,
+                    'max' : 10,
+                    'step' : 1,
+                    'class' : 'form-range',
+                }
+            }) }}
+        </div>
+        <div class="my-4">
+            {{ form_row(form.readingDate) }}
+        </div>
+        <div class="my-4">
+            {{ form_row(form.opinion) }}
+        </div>
+        <div class="my-4">
+            {{ form_row(form.book) }}
+        </div>
+        <div class="text-center my-4">
+            <button type="submit" class="btn btn-primary">Enregistrer</button>
+        </div>
+    {{ form_end(form) }}
+</div>
