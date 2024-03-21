@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste d'envies{% endblock %}
+
+{% block body %}
+    <h1>Liste d'envies</h1>
+
+    <div class="carousel">
+        {% for book in wishlist %}
+            <div class="carousel-cell">
+                <img src="{{asset(book.cover)}}" class="book" />
+                <p class="nameBook">{{book.name}}</p>
+                <p class="auteur">{{ book.author.firstname ~ ' ' ~ book.author.lastname }}</p>
+                {# Ajoutez ici les liens ou actions que vous souhaitez #}
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

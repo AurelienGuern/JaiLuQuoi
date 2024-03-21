@@ -30,24 +30,32 @@ class BookController extends AbstractController
         $user = $this->getUser();
         $wishList = $user->getWishList();
 
-        return $this->render('book/index.html.twig', [
-            'books' => $wishList
+        return $this->render('book/wishlist.html.twig', [
+            'wishlist' => $wishList
         ]);
     }
 
-    #[Route('/wishlist{id}', name: 'app_book_addWishlist', methods: ['POST', 'GET'])]
-    public function addWishList(Book $book): Response
+    #[Route('/wishlist/{id}', name: 'app_book_addWishlist', methods: ['POST'])]
+    public function addWishList(Book $book, EntityManagerInterface $entityManager): Response
     {
-
+        // Vérifiez si le livre existe
+        if (!$book) {
+            throw $this->createNotFoundException('Le livre spécifié n\'existe pas.');
+        }
+    
         /** @var \App\Entity\User $user */
         $user = $this->getUser();
-        $book->addUser($user);
-        $user->addWishList($book, $user->getWishList());
-
-        return $this->render('book/index.html.twig', [
-            'books' => $book
-        ]);
+    
+        // Ajoutez le livre à la liste d'envies de l'utilisateur
+        $user->addWishList($book);
+    
+        // Persistez les modifications dans la base de données
+        $entityManager->flush();
+    
+        // Redirigez l'utilisateur vers la liste d'envies mise à jour
+        return $this->redirectToRoute('app_book_wishlist');
     }
+    
 
     #[Route('/new', name: 'app_book_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response

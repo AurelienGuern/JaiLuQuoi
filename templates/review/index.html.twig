@@ -18,6 +18,8 @@
           <p class="auteur">{{ review.book.author.firstname ~ ' ' ~ review.book.author.lastname }}</p>
             <p>Note : {{ review.note }}</p>
             <p>Date de lecture : {{ review.readingDate ? review.readingDate|date('F Y') : 'Non spécifiée' }}</p>
+        						<a class="buttonBook" href="{{path('app_review_show', {id:review.id})}}">Détail</a>
+
         </div>
         {% endfor %}
 

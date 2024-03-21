@@ -12,11 +12,14 @@
           <p class="auteur">{{ author.firstname ~ ' ' ~ author.lastname }}</p>
           {# <p class="dateLecture">{{book.date}}</p> #}
           {# {% if  %} #}
+          
           <a href="{{path('app_review_new', {key: book.id})}}" class="buttonBook">Ajouter à ma bibliothèque</a>
           {# <a href="#" class="buttonBook">Ajouter à ma liste d'envies</a> #}
         </div>
 
-    <a class="buttonBook" href="{{ path('app_book_addWishlist', {id:book.id}) }}">Ajouter à ma lise d'envies !</a>
+<form action="{{ path('app_book_addWishlist', {id: book.id}) }}" method="POST">
+    <button type="submit" class="buttonBook">Ajouter à ma liste d'envies !</button>
+</form>
 
     <a href="{{ path('app_book_index') }}">Retour à la liste</a>
 
