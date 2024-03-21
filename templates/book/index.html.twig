@@ -19,7 +19,7 @@
         {% for book in books %}
             <tr>
                 <td>{{ book.name }}</td>
-                <td>{{ book.releaseYear ? book.releaseYear|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ book.releaseYear ? book.releaseYear|date('Y M') : '' }}</td>
                                 <td>{{ book.cover }}</td>
 
                 <td>

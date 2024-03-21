@@ -129,20 +129,25 @@
 			<h2>
 				<span>Liste d'envies</span>
 			</h2>
-			<article class="EnvyList">
-				<div class="carousel-cell">
-					<img src="img/books/martineden.jpg" class="book"/>
-					<p class="name">Martin Eden</p>
-					<p class="auteur">Jack London</p>
-					<a href="#" class="buttonBook">Je craque !</a>
-				</div>
-				<div class="carousel-cell">
-					<img src="img/books/mouradwinter.jpg" class="book"/>
-					<p class="name">L'amour c'est surcôté</p>
-					<p class="auteur">Mourad Winter</p>
-					<a href="#" class="buttonBook">Je craque !</a>
-				</div>
-			</article>
+	 <div class="carousel">
+        {% for book in wishlist %}
+            <div class="carousel-cell">
+                <img src="{{asset(book.cover)}}" class="book" />
+                <p class="nameBook">{{book.name}}</p>
+                <p class="auteur">{{ book.author.firstname ~ ' ' ~ book.author.lastname }}</p>
+                <p> {{book.releaseYear|date('M Y')}} </p>
+                {# Ajoutez ici les liens ou actions que vous souhaitez #}
+                <a class="buttonBook" href="{{path('app_book_show', {id:book.id})}}">Je craque !</a>
+<form action="{{ path('app_book_removeWishlist', {id: book.id}) }}" method="POST">
+    <button type="submit" class="buttonBook">Retirer à ma liste d'envies :(</button>
+</form>
+
+            </div>
+
+            						
+        {% endfor %}
 		</section>
 	</body>
 </main>{% endblock %}
+
+

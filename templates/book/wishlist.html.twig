@@ -11,8 +11,16 @@
                 <img src="{{asset(book.cover)}}" class="book" />
                 <p class="nameBook">{{book.name}}</p>
                 <p class="auteur">{{ book.author.firstname ~ ' ' ~ book.author.lastname }}</p>
+                <p> {{book.releaseYear|date('M Y')}} </p>
                 {# Ajoutez ici les liens ou actions que vous souhaitez #}
+                <a class="buttonBook" href="{{path('app_book_show', {id:book.id})}}">Je craque !</a>
+<form action="{{ path('app_book_removeWishlist', {id: book.id}) }}" method="POST">
+    <button type="submit" class="buttonBook">Retirer à ma liste d'envies :(</button>
+</form>
+
             </div>
+
+            						
         {% endfor %}
     </div>
 {% endblock %}

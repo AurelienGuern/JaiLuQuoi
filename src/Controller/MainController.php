@@ -21,10 +21,10 @@ class MainController extends AbstractController
 
         /** @var \App\Entity\User $user */
         $user = $this->getUser();
-        // $wishList = $user->getWishList();
 
         return $this->render('main/index.html.twig', [
             'reviews' => $reviewRepository->getlastThreeReviews(),
+            'wishlist' => $user->getWishList()
         ]);
     }
 
