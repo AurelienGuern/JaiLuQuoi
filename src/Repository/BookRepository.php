@@ -46,13 +46,14 @@ class BookRepository extends ServiceEntityRepository
     //        ;
     //    }
 
-    public function findRandomBook()
-{
-    return $this->createQueryBuilder('b')
-        ->orderBy('RAND()')
-        ->setMaxResults(1)
-        ->getQuery()
-        ->getOneOrNullResult();
-
-}
+    // public function findRandomBook()
+    // {
+    //     return $this->createQueryBuilder('b')
+    //         ->addSelect('RAND() as HIDDEN rand')
+    //         ->orderBy('rand')
+    //         ->setMaxResults(1)
+    //         ->getQuery()
+    //         ->getOneOrNullResult();
+    // }
+    
 }

@@ -1,28 +1,22 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Book{% endblock %}
+{% block title %}{{book.name}}{% endblock %}
 
 {% block body %}
-    <h1>Book</h1>
+    <h1>{{book.name}}</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ book.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ book.name }}</td>
-            </tr>
-            <tr>
-                <th>Release_year</th>
-                <td>{{ book.releaseYear ? book.releaseYear|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
+   <div class="carousel">
+        <div class="carousel-cell">
+          <img src="{{asset(book.cover)}}" class="book" />
+          <p class="nameBook">{{book.name}}</p>
+          <p class="auteur">{{ author.firstname ~ ' ' ~ author.lastname }}</p>
+          {# <p class="dateLecture">{{book.date}}</p> #}
+          {# {% if  %} #}
+          <a href="{{path('app_review_new', {key: book.id})}}" class="buttonBook">Ajouter à ma bibliothèque</a>
+          {# <a href="#" class="buttonBook">Ajouter à ma liste d'envies</a> #}
+        </div>
 
-    <a href="{{ path('app_book_index') }}">back to list</a>
+    <a href="{{ path('app_book_index') }}">Retour à la liste</a>
 
     <a href="{{ path('app_book_edit', {'id': book.id}) }}">edit</a>
 

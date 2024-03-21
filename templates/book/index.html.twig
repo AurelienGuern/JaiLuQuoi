@@ -8,18 +8,20 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Release_year</th>
+    
+                <th>Titre</th>
+                <th>Année de sortie</th>
+                <th>Image de couverture</th>
                 <th>actions</th>
             </tr>
         </thead>
         <tbody>
         {% for book in books %}
             <tr>
-                <td>{{ book.id }}</td>
                 <td>{{ book.name }}</td>
                 <td>{{ book.releaseYear ? book.releaseYear|date('Y-m-d H:i:s') : '' }}</td>
+                                <td>{{ book.cover }}</td>
+
                 <td>
                     <a href="{{ path('app_book_show', {'id': book.id}) }}">show</a>
                     <a href="{{ path('app_book_edit', {'id': book.id}) }}">edit</a>

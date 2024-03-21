@@ -21,3 +21,12 @@ $(document).ready(function(){
   var flkty = new Flickity( '.carousel', {
     // options
   });
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var rangeInput = document.getElementById('{{ form.rating.vars.id }}');
+    var ratingValue = document.getElementById('rating-value');
+
+    rangeInput.addEventListener('input', function() {
+        ratingValue.textContent = rangeInput.value;
+    });
+});

@@ -45,8 +45,12 @@ class BookController extends AbstractController
     #[Route('/{id}', name: 'app_book_show', methods: ['GET'])]
     public function show(Book $book): Response
     {
+      
+        $author = $book->getAuthor();
+    
         return $this->render('book/show.html.twig', [
             'book' => $book,
+            'author' => $author
         ]);
     }
 
@@ -80,15 +84,14 @@ class BookController extends AbstractController
     }
 
 
-#[Route('/randombook', name: 'app_book_random', methods: ['GET'])]
-public function showRandom(BookRepository $bookRepository, Book $book): Response
-{
-$book = $bookRepository->findRandomBook();
+    // #[Route('/random/{id}', name: 'app_book_random', methods: ['GET'])]
+    // public function showRandom(BookRepository $bookRepository): Response
+    // {
+    //     $books = $bookRepository->findAll();
+    //     $randomBook = $books[array_rand($books)];
+    //     dd($randomBook);
 
-    dd($bookRepository->findall());
-    return $this->render('book/show.html.twig', [
-        'book' => $book
-    ]);
-}
+    //     return $this->redirectToRoute('app_book_show', ['id' => $randomBook->getId()]);
+    // }
 
 }

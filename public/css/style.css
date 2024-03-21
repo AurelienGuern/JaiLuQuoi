@@ -139,3 +139,7 @@ font-weight: 800;
 #navbarNav {
   justify-content: space-between;
 }
+
+.rating_input {
+  width : 40%;
+}

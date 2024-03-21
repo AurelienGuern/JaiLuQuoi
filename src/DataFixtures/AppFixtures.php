@@ -2,12 +2,12 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Author;
+use Faker\Factory;
 use App\Entity\Book;
 use App\Entity\User;
-use Faker\Factory;
-use Doctrine\Bundle\FixturesBundle\Fixture;
+use App\Entity\Author;
 use Doctrine\Persistence\ObjectManager;
+use Doctrine\Bundle\FixturesBundle\Fixture;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class AppFixtures extends Fixture
@@ -21,7 +21,6 @@ class AppFixtures extends Fixture
     public $users = [];
     public $books = [];
     public $authors = [];
-    public $libraries = [];
 
     public function load(ObjectManager $manager): void
     {
@@ -36,6 +35,8 @@ class AppFixtures extends Fixture
                 ->setPassword($this->hasher->hashPassword($user, 'password'));
 
             $users[] = $user;
+                        
+    
             $manager->persist($user);
         }
         echo ('Utilisateurs créés');
@@ -58,7 +59,8 @@ class AppFixtures extends Fixture
             
             $book = new Book;
             $book->setName($faker->word())
-                ->setAuthor($authors[rand(1, 10)]);
+                ->setAuthor($authors[rand(1, 10)])
+                ->setCover('/img/books/kilometrezero.jpg');
 
             $books[] = $book;
 

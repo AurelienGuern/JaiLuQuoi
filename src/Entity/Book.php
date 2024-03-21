@@ -31,9 +31,13 @@ class Book
     #[ORM\Column(length: 2083, nullable: true)]
     private ?string $cover = null;
 
+    #[ORM\OneToMany(targetEntity: Review::class, mappedBy: 'book')]
+    private Collection $reviews;
+
     public function __construct()
     {
         $this->libraries = new ArrayCollection();
+        $this->reviews = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -112,6 +116,36 @@ class Book
     public function setCover(?string $cover): static
     {
         $this->cover = $cover;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Review>
+     */
+    public function getReviews(): Collection
+    {
+        return $this->reviews;
+    }
+
+    public function addReview(Review $review): static
+    {
+        if (!$this->reviews->contains($review)) {
+            $this->reviews->add($review);
+            $review->setBook($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReview(Review $review): static
+    {
+        if ($this->reviews->removeElement($review)) {
+            // set the owning side to null (unless already changed)
+            if ($review->getBook() === $this) {
+                $review->setBook(null);
+            }
+        }
 
         return $this;
     }
