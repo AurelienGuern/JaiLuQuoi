@@ -16,6 +16,8 @@
           {# <a href="#" class="buttonBook">Ajouter à ma liste d'envies</a> #}
         </div>
 
+    <a class="buttonBook" href="{{ path('app_book_addWishlist', {id:book.id}) }}">Ajouter à ma lise d'envies !</a>
+
     <a href="{{ path('app_book_index') }}">Retour à la liste</a>
 
     {# <a href="{{ path('app_book_edit', {'id': book.id}) }}">edit</a> #}

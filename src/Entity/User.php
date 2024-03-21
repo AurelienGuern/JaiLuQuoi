@@ -45,10 +45,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Review::class, mappedBy: 'user')]
     private Collection $reviews;
 
+    #[ORM\ManyToMany(targetEntity: Book::class, inversedBy: 'users')]
+    private Collection $wishList;
+
    
     public function __construct()
     {
         $this->reviews = new ArrayCollection();
+        $this->wishList = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -188,6 +192,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $review->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Book>
+     */
+    public function getWishList(): Collection
+    {
+        return $this->wishList;
+    }
+
+    public function addWishList(Book $wishList): static
+    {
+        if (!$this->wishList->contains($wishList)) {
+            $this->wishList->add($wishList);
+        }
+
+        return $this;
+    }
+
+    public function removeWishList(Book $wishList): static
+    {
+        $this->wishList->removeElement($wishList);
 
         return $this;
     }

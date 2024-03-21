@@ -22,6 +22,33 @@ class BookController extends AbstractController
         ]);
     }
 
+    #[Route('/wishlist', name: 'app_book_wishlist', methods: ['GET'])]
+    public function getWishlist(BookRepository $bookRepository): Response
+    {
+
+        /** @var \App\Entity\User $user */
+        $user = $this->getUser();
+        $wishList = $user->getWishList();
+
+        return $this->render('book/index.html.twig', [
+            'books' => $wishList
+        ]);
+    }
+
+    #[Route('/wishlist{id}', name: 'app_book_addWishlist', methods: ['POST', 'GET'])]
+    public function addWishList(Book $book): Response
+    {
+
+        /** @var \App\Entity\User $user */
+        $user = $this->getUser();
+        $book->addUser($user);
+        $user->addWishList($book, $user->getWishList());
+
+        return $this->render('book/index.html.twig', [
+            'books' => $book
+        ]);
+    }
+
     #[Route('/new', name: 'app_book_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {

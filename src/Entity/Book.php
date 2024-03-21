@@ -34,10 +34,14 @@ class Book
     #[ORM\OneToMany(targetEntity: Review::class, mappedBy: 'book')]
     private Collection $reviews;
 
+    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'wishList')]
+    private Collection $users;
+
     public function __construct()
     {
         $this->libraries = new ArrayCollection();
         $this->reviews = new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -145,6 +149,33 @@ class Book
             if ($review->getBook() === $this) {
                 $review->setBook(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): static
+    {
+        if (!$this->users->contains($user)) {
+            $this->users->add($user);
+            $user->addWishList($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): static
+    {
+        if ($this->users->removeElement($user)) {
+            $user->removeWishList($this);
         }
 
         return $this;
