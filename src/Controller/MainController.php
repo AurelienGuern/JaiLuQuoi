@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Author;
 use App\Entity\Book;
-use App\Entity\Library;
 use App\Entity\Reader;
 use App\Entity\User;
 use App\Repository\ReviewRepository;
@@ -21,6 +20,16 @@ class MainController extends AbstractController
 
         /** @var \App\Entity\User $user */
         $user = $this->getUser();
+
+        if (!$user) {
+            return $this->redirectToRoute('app_register');
+        }
+
+        if (!$user->getWishList()) {
+            return $this->render('main/index.html.twig', [
+                'reviews' => $reviewRepository->getlastThreeReviews(),
+            ]);
+        }
 
         return $this->render('main/index.html.twig', [
             'reviews' => $reviewRepository->getlastThreeReviews(),
