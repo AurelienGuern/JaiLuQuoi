@@ -111,6 +111,7 @@ class BookController extends AbstractController
         /** @var \App\Entity\User $user */
         $user = $this->getUser();
 
+        $review = "";
         $reviews = $book->getReviews();
 
         foreach ($reviews as $rev) {

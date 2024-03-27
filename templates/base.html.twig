@@ -58,8 +58,8 @@
 						<a class="nav-link" href="{{path('app_book_wishlist')}}" style="font-size: 18px;">Liste d'envies</a>
 					</li>
 					{# <li class="nav-item">
-						<a class="nav-link" href="{{path('app_book_random')}}" style="font-size: 18px;">Un livre au hasard ?</a>
-					</li> #}
+											<a class="nav-link" href="{{path('app_book_random')}}" style="font-size: 18px;">Un livre au hasard ?</a>
+										</li> #}
 					<li class="nav-item">
 						<a class="nav-link" href="{{path('contact')}}">Contact</a>
 					</li>
@@ -68,38 +68,26 @@
 					<li class="nav-item">
 						{% if app.user %}
 							<a href="{{path('app_logout')}}" class="btn btn-danger me-2">Déconnexion</a>
+							<a href="{{ path('app_user_show', {id:user.id}) }}" class="btn btn-dark me-2">Mon profil</a>
+
 						{% else %}
 							<a href="{{path('app_login')}}" class="btn btn-danger me-2">Connexion</a>
-							{% endif %}
-						</li>
+						{% endif %}
 					</li>
-					<li class="nav-item">
-						<form class="d-flex" action="">
-							<input class="form-control form-control-sm me-2" name="search" type="search" placeholder="Rechercher...">
-							<button class="btn btn-outline-danger" type="submit">
-								<i class="bi bi-search"></i>
-							</button>
-						</form>
-					</li>
-				</ul>
-			</div>
+				</li>
+				<li class="nav-item">
+					<form class="d-flex" action="">
+						<input class="form-control form-control-sm me-2" name="search" type="search" placeholder="Rechercher...">
+						<button class="btn btn-outline-danger" type="submit">
+							<i class="bi bi-search"></i>
+						</button>
+					</form>
+				</li>
+			</ul>
 		</div>
-	</nav>
-
-
-	<div class="container"> {% block content %}{% endblock %}
-		</div>
-
-
-		{% block body %}{% endblock %}
-	</html>
-</body>
-
-
-<!-- footer -->
-<footer class="container-fluid py-4 border-top text-center">
-	<span class="text-muted">J'ai lu quoi moi déjà ?
-
-
 	</div>
-</html>
+</html></nav><div class="container"> {% block content %}{% endblock %}
+</div>
+
+
+{% block body %}{% endblock %}</html></body><!-- footer --><footer class="container-fluid py-4 border-top text-center"><span class="text-muted">J'ai lu quoi moi déjà ?</div></html>
