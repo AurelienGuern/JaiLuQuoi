@@ -2,14 +2,15 @@
 
 namespace App\Controller;
 
+use App\Entity\Book;
 use App\Entity\Review;
 use App\Form\ReviewType;
 use App\Repository\ReviewRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/review')]
 class ReviewController extends AbstractController
@@ -29,6 +30,28 @@ $reviews = $reviewRepository->findAll();
     {
         $review = new Review();
         $review->setUser($this->getUser());
+        $form = $this->createForm(ReviewType::class, $review);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($review);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_review_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->render('review/new.html.twig', [
+            'review' => $review,
+            'form' => $form,
+        ]);
+    }
+
+    #[Route('/new/{id}', name: 'app_review_new', methods: ['GET', 'POST'])]
+    public function reviewBook(Request $request, Book $book, EntityManagerInterface $entityManager): Response
+    {
+        $review = new Review();
+        $review->setUser($this->getUser());
+        $review->setBook($book);
         $form = $this->createForm(ReviewType::class, $review);
         $form->handleRequest($request);
 

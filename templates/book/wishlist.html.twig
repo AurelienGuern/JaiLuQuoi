@@ -1,26 +1,31 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste d'envies{% endblock %}
+{% block title %}Liste d'envies
+{% endblock %}
 
 {% block body %}
-    <h1>Liste d'envies</h1>
+	<h1>Liste d'envies</h1>
 
-    <div class="carousel">
-        {% for book in wishlist %}
-            <div class="carousel-cell">
-                <img src="{{asset(book.cover)}}" class="book" />
-                <p class="nameBook">{{book.name}}</p>
-                <p class="auteur">{{ book.author.firstname ~ ' ' ~ book.author.lastname }}</p>
-                <p> {{book.releaseYear|date('M Y')}} </p>
-                {# Ajoutez ici les liens ou actions que vous souhaitez #}
-                <a class="buttonBook" href="{{path('app_book_show', {id:book.id})}}">Je craque !</a>
-<form action="{{ path('app_book_removeWishlist', {id: book.id}) }}" method="POST">
-    <button type="submit" class="buttonBook">Retirer à ma liste d'envies :(</button>
-</form>
-
+	<div class="carousel">
+		{% for book in wishlist %}
+			<div class="carousel-cell">
+				<img src="{{asset(book.cover)}}" class="book"/>
+				<p class="nameBook">{{book.name}}</p>
+				<p class="auteur">{{ book.author.firstname ~ ' ' ~ book.author.lastname }}</p>
+				<p>
+					{{book.releaseYear|date('M Y')}}
+				</p>
+				{# Ajoutez ici les liens ou actions que vous souhaitez #}
+				 <div class="d-inline">
+                <a class="buttonBook mr-2" href="{{ path('app_book_show', { id: book.id }) }}">Je craque !</a>
+                <a class="buttonBook" href="{{ path('app_review_new', { id: book.id }) }}">Je l'ai lu !</a>
             </div>
+				<form action="{{ path('app_book_removeWishlist', {id: book.id}) }}" method="POST">
+					<button type="submit" class="buttonBook mt-4">Retirer à ma liste d'envies :(</button>
+				</form>
 
-            						
-        {% endfor %}
-    </div>
+			</div>
+
+		{% endfor %}
+	</div>
 {% endblock %}
