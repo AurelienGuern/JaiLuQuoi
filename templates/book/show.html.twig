@@ -34,7 +34,7 @@
 				{% endif %}
 			{% endfor %}
 			{% if hasReviewed %}
-				<a href="{{ path('app_review_show', {id: book.id}) }}" class="buttonBook">Voir ma revue de
+				<a href="{{ path('app_review_show', {id: review.id}) }}" class="buttonBook">Voir ma revue de
 					{{ book.name }}</a>
 			{% endif %}
 			{% if not hasReviewed %}

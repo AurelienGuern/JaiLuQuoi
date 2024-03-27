@@ -108,15 +108,25 @@ class BookController extends AbstractController
     public function show(Book $book): Response
     {
 
-           /** @var \App\Entity\User $user */
-           $user = $this->getUser();
+        /** @var \App\Entity\User $user */
+        $user = $this->getUser();
+
+        $reviews = $book->getReviews();
+
+        foreach ($reviews as $rev) {
+            if ($rev->getUser() == $user) {
+                $review = $rev;
+                break;
+            }
+        }
 
         $author = $book->getAuthor();
 
         return $this->render('book/show.html.twig', [
             'book' => $book,
             'author' => $author,
-            'user' => $user
+            'user' => $user,
+            'review' => $review
         ]);
     }
 

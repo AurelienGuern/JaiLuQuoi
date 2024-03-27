@@ -46,7 +46,7 @@ $reviews = $reviewRepository->findAll();
         ]);
     }
 
-    #[Route('/new/{id}', name: 'app_review_new', methods: ['GET', 'POST'])]
+    #[Route('/new/{id}', name: 'app_review_new_book', methods: ['GET', 'POST'])]
     public function reviewBook(Request $request, Book $book, EntityManagerInterface $entityManager): Response
     {
         $review = new Review();
