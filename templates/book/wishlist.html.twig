@@ -16,13 +16,14 @@
 					{{book.releaseYear|date('M Y')}}
 				</p>
 				{# Ajoutez ici les liens ou actions que vous souhaitez #}
-				 <div class="d-inline">
-                <a class="buttonBook mr-2" href="{{ path('app_book_show', { id: book.id }) }}">Je craque !</a>
-                <a class="buttonBook" href="{{ path('app_review_new', { id: book.id }) }}">Je l'ai lu !</a>
-            </div>
-				<form action="{{ path('app_book_removeWishlist', {id: book.id}) }}" method="POST">
-					<button type="submit" class="buttonBook mt-4">Retirer à ma liste d'envies :(</button>
+				<div class="d-inline">
+					<a class="buttonBook mr-2" href="{{ path('app_book_show', { id: book.id }) }}">Je craque !</a>
+					<a class="buttonBook" href="{{ path('app_review_new', { id: book.id }) }}">Je l'ai lu !</a>
+				</div>
+				<form action="{{ path('app_book_removeWishlist', {id: book.id}) }}" method="POST" class="mt-4">
+					<button type="submit" class="buttonBook">Retirer de ma liste d'envies :(</button>
 				</form>
+
 
 			</div>
 

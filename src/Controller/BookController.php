@@ -30,6 +30,7 @@ class BookController extends AbstractController
         $user = $this->getUser();
         $wishList = $user->getWishList();
 
+
         return $this->render('book/wishlist.html.twig', [
             'wishlist' => $wishList
         ]);
@@ -64,27 +65,24 @@ class BookController extends AbstractController
         if (!$book) {
             throw $this->createNotFoundException('Le livre spécifié n\'existe pas.');
         }
-    
+
         /** @var \App\Entity\User $user */
         $user = $this->getUser();
-    
+
         // Vérifiez si le livre est dans la liste d'envies de l'utilisateur
         if (!$user->getWishList()->contains($book)) {
             throw $this->createAccessDeniedException('Le livre spécifié n\'est pas dans votre liste.');
         }
-    
+
         // Retirez le livre de la liste d'envies de l'utilisateur
         $user->removeWishList($book);
         $book->removeUser($user);
-        dd($user->getWishList());
+
         // Persistez les modifications dans la base de données
-        $entityManager->flush();
-    
+        $entityManager->persist($book);
         // Redirigez l'utilisateur vers la liste d'envies mise à jour
         return $this->redirectToRoute('app_book_wishlist');
     }
-    
-
 
     #[Route('/new', name: 'app_book_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
@@ -110,11 +108,15 @@ class BookController extends AbstractController
     public function show(Book $book): Response
     {
 
+           /** @var \App\Entity\User $user */
+           $user = $this->getUser();
+
         $author = $book->getAuthor();
 
         return $this->render('book/show.html.twig', [
             'book' => $book,
-            'author' => $author
+            'author' => $author,
+            'user' => $user
         ]);
     }
 
