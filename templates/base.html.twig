@@ -68,7 +68,7 @@
 					<li class="nav-item">
 						{% if app.user %}
 							<a href="{{path('app_logout')}}" class="btn btn-danger me-2">Déconnexion</a>
-							<a href="{{ path('app_user_show', {id:user.id}) }}" class="btn btn-dark me-2">Mon profil</a>
+							{# <a href="{{ path('app_user_show', {id:user.id}) }}" class="btn btn-dark me-2">Mon profil</a> #}
 
 						{% else %}
 							<a href="{{path('app_login')}}" class="btn btn-danger me-2">Connexion</a>
